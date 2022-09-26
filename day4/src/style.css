@@ -1,0 +1,13 @@
+html,
+body {
+    background-color: #101010;
+    color: #FEFEFE;
+    font-family: Helvetica, Arial, Sans-Serif;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container__count {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
