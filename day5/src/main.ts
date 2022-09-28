@@ -38,6 +38,7 @@ async function loadPage(route?: string) {
         const file = await import(/* @vite-ignore */ './pages' + fileName)
         templatedVirtualDom = await eval(compileToString(eval(file.default)()))
     }
+    console.log
     documentBody.innerHTML = templatedVirtualDom
     // here we hydrate/re-hydrate the page content
     await hydratePage()

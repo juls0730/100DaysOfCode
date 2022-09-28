@@ -7,7 +7,7 @@ export default () => {
         <div class="p-6 border-neutral-800 rounded-lg container__content  border">
             ${Counter()}
             <div class="flex gap-1 justify-center">
-            reutrn ${RouterLink('/', 'Home')}
+            go ${RouterLink('/subroute/deep/deeper/deepest', 'deeper')}
             </div>
         </div>
     </div>
