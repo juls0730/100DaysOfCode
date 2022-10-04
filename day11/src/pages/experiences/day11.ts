@@ -5,7 +5,7 @@ export default () => {
     <div class="grid place-items-center p-3 content-center min-h-screen">
         <div class="p-6 border-neutral-800 rounded-lg container__content  border">
         <div class="min-w-full text-center">
-            <h1 class="text-2xl font-semibold">Day 9</h1>
+            <h1 class="text-2xl font-semibold">Day 11</h1>
             <h3 class="text-lg">On day 11 I worked with pointer events.</h3>
         </div>
         <br/>
