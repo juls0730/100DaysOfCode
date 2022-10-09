@@ -1,0 +1,8 @@
+<div class="grid place-items-center p-3 content-center min-h-screen">
+  <div class="p-6 border-neutral-800 rounded-lg container__content  border">
+    <Counter />
+    <textInput />
+    <a href="/page2" client:prefetch>Navigate</a>
+    <a href="/page3" client:prefetch="hover">Navigate</a>
+  </div>
+</div>
