@@ -176,7 +176,7 @@ export async function hydratePage() {
     })
 
     document.body.addEventListener('keydown', (e) => {
-        ctrlPressed = e.keyCode
+        ctrlPressed = e.ctrlKey
       })
 
       document.body.addEventListener('keyup', (e) => {
