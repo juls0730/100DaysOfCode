@@ -23,5 +23,5 @@
         "noUncheckedIndexedAccess": true,
         "baseUrl": ".",
     },
-    "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*"],
+    "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*", "next-env.d.ts"],
   }
