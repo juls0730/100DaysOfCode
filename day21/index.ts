@@ -66,8 +66,6 @@ async function createServer() {
 				fileName = fileName.join('/').toLowerCase().trim();
 			}
 
-			template = template.replace('<script async src="/src/entry-client.ts" type="module"></script>', '');
-
 			// 2. Apply Vite HTML transforms. This injects the Vite HMR client, and
 			//    also applies HTML transforms from Vite plugins, e.g. global preambles
 			//    from @vitejs/plugin-react
@@ -119,6 +117,8 @@ async function createServer() {
 
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			const appState = main.appState;
+
+			template = template.replace('<script async src="/src/entry-client.ts" type="module"></script>', '');
 
 			template = template.replace('id="app"', 'id="app" data-server-rendered="true"');
 
