@@ -1,0 +1,7 @@
+<div class="grid place-items-center p-3 content-center min-h-screen">
+    <div class="p-6 border-neutral-800 rounded-lg container__content  border">
+        <htmlInput />
+        <myDad />
+        <a href="/" client:prefetch>Home</a>
+    </div>
+</div>
