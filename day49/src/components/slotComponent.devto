@@ -1,0 +1,6 @@
+<div class="mb-2">
+    <h2 class="text-xl font-semibold text-center">Slot data is:</h2>
+</div>
+<div>
+	<slot />
+</div>
