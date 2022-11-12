@@ -170,7 +170,11 @@ async function createServer() {
 		}
 
 		function renderSVGToBase64(element: string) {
-			let srcName = element.split('src')[1]?.split(' ')[0]?.slice(2);
+			const fixedElm = element.split('>')[0];
+			if (!fixedElm) return false;
+			if (fixedElm.split(' ').length < 2) return false;
+			if (!fixedElm.includes('svg:bundle')) return false;
+			let srcName = fixedElm.split('src')[1]?.split(' ')[0]?.slice(2);
 			if (!srcName) return;
 			srcName = srcName.slice(0, srcName.length - 2);
 			if (!srcName.includes('.svg')) return srcName;
