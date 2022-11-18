@@ -1,0 +1,36 @@
+<div class="mb-2">
+    <h2 class="text-xl font-semibold text-center">count is: { appState.contents.count }</h2>
+</div>
+<div class="flex justify-center mb-3">
+    <button d-on:click="appState.contents.count--"
+        class="transition-colors p-3 duration-300 active:bg-red-700 hover:bg-red-600 hover:text-zinc-100 mr-1">
+        <img src='/minus.svg'
+            svg:bundle
+            width="24px"
+            height="24px"
+            alt="minus" />
+    </button>
+    <button d-on:click="appState.contents.count = 0"
+        class="transition-colors p-3 duration-300 active:bg-zinc-700 hover:bg-zinc-800 hover:text-red-100 mr-1">
+        <img src='/refresh.svg'
+            svg:bundle
+            width="24px"
+            height="24px"
+            alt="reset">
+    </button>
+    <button d-on:click="appState.contents.count++"
+        class="transition-colors p-3 duration-300 active:bg-green-700 hover:bg-green-600 hover:text-green-100">
+        <img src='/plus.svg'
+            svg:bundle
+            width="24px"
+            height="24px"
+            alt="plus" />
+    </button>
+</div>
+<div>
+    <p d-if="appState.contents.count % 2 === 0 && !(appState.contents.count < 1)">count is even</p>
+    <p d-else-if="appState.contents.count == 0">count is 0</p>
+    <p d-else-if="appState.contents.count < 1">count is less than 0</p>
+    <p d-else>count is odd</p>
+</div>
+<Counter />

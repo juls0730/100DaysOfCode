@@ -1,0 +1,13 @@
+<div class="mb-2">
+    <h2 class="text-xl font-semibold text-center">Slot data is:</h2>
+	<p d-once>{appState.contents.count}</p>
+</div>
+<div>
+	<slot />
+</div>
+<div class="md-2">
+	<h2 class="text-xl font-semibold text-center">Slot data again is:</h2>
+</div>
+<div>
+	<slot />
+</div>
