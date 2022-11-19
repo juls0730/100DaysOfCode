@@ -1,0 +1,18 @@
+<div class="mb-2">
+	<h2 class="text-xl font-semibold text-center">Slot data is:</h2>
+	<p d-once>{appState.contents.count}</p>
+</div>
+<div>
+	<slot />
+</div>
+<div class="md-2">
+	<h2 class="text-xl font-semibold text-center">nested slot:</h2>
+</div>
+<div class="flex justify-center">
+	<div class="border border-neutral-600 p-3 rounded-md mb-2 w-3/4">
+		<nestedSlotComponent>
+			<Counter />
+			<p>Im nested</p>
+		</nestedSlotComponent>
+	</div>
+</div>
