@@ -1,0 +1,16 @@
+<Nav />
+<div class="container__body">
+	<slot />
+</div>
+
+<style>
+	html,
+	body {
+		height: 100vh;
+	}
+
+	.container__body {
+		height: calc(100vh - 73px - 0.75rem);
+		width: 100vw;
+	}
+</style>
