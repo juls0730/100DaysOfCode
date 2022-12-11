@@ -1,0 +1,16 @@
+<nav class="p-4 shadow-lg md:p-[1.375rem] dark:bg-zinc-900 border-b border-b-neutral-800 dark:text-white mb-2">
+	<ul class="flex flex-row items-baseline max-h-7">
+		  <li class="mr-2 text-lg">
+			<a href="/" client:prefetch>Home</a>
+		  </li>
+		  <li class="mr-2">
+			<a href="/page2" client:prefetch>page 2</a>
+		  </li>
+		  <li class="mr-2">
+			<a href="/page3" client:prefetch>page 3</a>
+		  </li>
+		  <li class="mr-2">
+			<a href="/nojavascript" client:prefetch>No Javascript</a>
+		  </li>
+	  </ul>
+</nav>
