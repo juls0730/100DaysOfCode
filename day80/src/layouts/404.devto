@@ -1,0 +1,5 @@
+    <div class="grid place-items-center p-3 content-center h-full">
+        <h1 class="text-4xl font-bold">404</h1>
+        <h2 class="text-2xl font-semibold">Looks like you're lost</h3>
+        <h3 class="text-xl font-semibold">Go <a href="/">home</a></h3>
+    </div>
