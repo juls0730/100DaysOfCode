@@ -1,9 +1,20 @@
 import { ReactifyTemplate, hydrateModelAttributes, hydrateKeyDown } from '../hydrationManager';
 import { JSDOM } from 'jsdom';
+import * as terser from 'terser';
 import { Reactive } from '../../ReactiveObject';
 import { getAppState, initAppState } from '../../../main';
 
 const appState = await getAppState();
+
+async function minify(code: string) {
+	try {
+		code = (await terser.minify(code)).code;
+	} catch (err) {
+		const { message, line, col, pos } = err;
+		console.log({ message, line, col, pos, code });
+	}
+	return code;
+}
 
 function SSRHydrateElement(querySelector: string, eventListenerName: string, removeAttribute?: boolean) {
 	const queryName: Array<string> | null = /(?<=\[).+?(?=\])/.exec(querySelector);
@@ -45,7 +56,7 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
 	if (template.includes('d-if')) {
 		const conditionalElms = Array.from(dom.window.document.querySelectorAll('*[d-if]'));
 		if (conditionalElms.length === 0) return;
-		conditionalElms.forEach(async (e: Element, i) => {
+		await Promise.all(conditionalElms.map(async (e: Element, i) => {
 			const { document } = dom.window;
 			const condition = e.getAttribute('d-if');
 			e.removeAttribute('d-if');
@@ -107,10 +118,9 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
 				if (element.getAttribute('d-else-if') !== null) {
 					statementDirective = 'else if';
 				}
-				const condition = element.getAttribute('d-' + statementDirective.split(' ').join('-'));
 
 				if (statementDirective == 'else if') {
-					statementDirective = `else if (${condition})`;
+					statementDirective = `else if (${element.getAttribute('d-else-if')})`;
 					element.removeAttribute('d-else-if');
 				}
 
@@ -120,18 +130,20 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
             }`;
 			});
 
-			if (!condition) return;
-			script += `resetHTML_${i}();`;
-			script += `eval(\`${ifStatement}\`);`;
+			ifStatement = await minify(ifStatement, condition);
 
-			if (condition.includes('appState.contents.')) {
+			script += `const ifStatement_${i} = \`${ifStatement}\`;
+			resetHTML_${i}();
+			eval(ifStatement_${i});`;
+
+			if (condition && condition.includes('appState.contents.')) {
 				let reactiveProp: Array<string> | string | null | undefined = /appState\.contents\.[a-zA-Z]+/.exec(condition);
 				if (!reactiveProp || !reactiveProp[0]) return;
 				reactiveProp = reactiveProp[0].split('.')[2];
 				if (!reactiveProp) return;
 				script += `appState.listen("${reactiveProp}", () => {
 				resetHTML_${i}();
-				eval(\`${ifStatement}\`);
+				eval(ifStatement_${i});
 			});`;
 			}
 
@@ -144,7 +156,7 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
 			});
 
 			eval(ifStatement);
-		});
+		}));
 	}
 
 	if (template.includes('d-on:click')) {
@@ -204,7 +216,7 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
 			});
 
 			if (bindElms.length === 0) return;
-			bindElms.forEach((attr: Attr, attri) => {
+			bindElms.forEach(async (attr: Attr, attri) => {
 				const item = attr.name;
 				const key = item.split(':')[1]?.toLowerCase();
 				const originalValue = '(' + attr.value + ')';
@@ -212,7 +224,7 @@ export async function renderSSRHydrationCode(template: string, reduceJavascript 
 
 				e.removeAttribute(item);
 
-				function setAttribute() {
+				async function setAttribute() {
 
 					if (!key) return;
 					let value = 'return "' + originalValue + '"';
