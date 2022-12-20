@@ -1,0 +1,7 @@
+<div class="grid place-items-center p-3 content-center h-full">
+	<div class="p-6 border-neutral-800 rounded-lg container__content  border">
+	  <MusicPlayer />
+	  <button d-on:click="appState.contents.audioObj.playing=!appState.contents.audioObj.playing; console.log(appState.contents.audioObj.playing)">{appState.contents.audioObj.playing}</button>
+	  <a client:prefetch href="/">Home</a>
+	</div>
+  </div>
