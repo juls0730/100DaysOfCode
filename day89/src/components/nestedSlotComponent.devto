@@ -1,0 +1,7 @@
+<div class="mb-2">
+    <h2 class="text-xl font-semibold text-center">I should be a nested slot component:</h2>
+</div>
+<div>
+	<slot />
+	<Counter />
+</div>
