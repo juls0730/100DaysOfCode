@@ -1,0 +1,13 @@
+<div class="grid place-items-center p-3 content-center h-full">
+    <div class="p-6 border-neutral-800 rounded-lg container__content  border">
+        <cookieInput />
+        <htmlInput />
+        <a href="/"
+            client:prefetch>Home</a>
+            <br/>
+            <a href="/nojavascript"
+            client:prefetch>No javascript</a>
+            <br/>
+            <a href="/music" client:prefetch>Music</a>
+    </div>
+</div>
